@@ -1,25 +1,20 @@
-# New Project
+✨
+http://localhost:8080
 
-> ✨ Bootstrapped with Create Snowpack App (CSA).
+you need to have new version of Node.js and Rust 
 
-## Available Scripts
+yarn install (npm i) 
 
-### npm start
+cargo build 
 
-Runs the app in the development mode.
-Open http://localhost:8080 to view it in the browser.
+rustup target add wasm32-unknown-unknown
 
-The page will reload if you make edits.
-You will also see any lint errors in the console.
+cargo build --target wasm32-unknown-unknown
 
-### npm run build
+cargo install cargo-watch
 
-Builds a static copy of your site to the `build/` folder.
-Your app is ready to be deployed!
+yarn start (if 404 -> reload server (pkg folder init))
 
-**For the best production performance:** Add a build bundler plugin like "@snowpack/plugin-webpack" to your `snowpack.config.mjs` config file.
+ask me for help if u have problems with it
 
-### npm test
-
-Launches the application test runner.
-Run with the `--watch` flag (`npm test -- --watch`) to run in interactive watch mode.
+✨

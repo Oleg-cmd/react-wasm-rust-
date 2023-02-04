@@ -1,37 +1,49 @@
-import React, { useState, useEffect } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+// импортируем функцию инициализации и
+// нашу функцию `greet`
+import init, { greet } from '../pkg';
 
 function App() {
-  // Create the count state.
-  const [count, setCount] = useState(0);
-  // Create the counter (+1 every second).
-  useEffect(() => {
-    const timer = setTimeout(() => setCount(count + 1), 1000);
-    return () => clearTimeout(timer);
-  }, [count, setCount]);
-  // Return the App component.
+  // состояние для имени
+  const [name, setName] = useState('');
+
+  // функция изменения имени
+  const changeName = ({ target: { value } }) => setName(value);
+  // функция приветствия
+  const sayHello = async (e) => {
+    e.preventDefault();
+    const trimmed = name.trim();
+    if (!trimmed) return;
+    // выполняем инициализацию
+    await init();
+    // вызываем нашу функцию
+    greet(name);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.jsx</code> and save to reload.
-        </p>
-        <p>
-          Page has been open for <code>{count}</code> seconds.
-        </p>
-        <p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </p>
-      </header>
+    <div className="app">
+      <h1>React Rust</h1>
+
+      <div className="container">
+        <div className="container__item">
+          <form className="form" onSubmit={sayHello}>
+            <input
+              className="form__field"
+              type="text"
+              id="name"
+              placeholder="Enter your name"
+              value={name}
+              onChange={changeName}
+            />
+            <button
+              type="button"
+              className="btn btn--primary btn--inside uppercase"
+            >
+              Send
+            </button>
+          </form>
+        </div>
+      </div>
     </div>
   );
 }
